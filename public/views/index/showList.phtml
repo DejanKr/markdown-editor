@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Md to Html</title>
+
+  <!-- Bootstrap -->
+  <link href="../../css/plugins/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/plugins/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="../../css/main.css" rel="stylesheet">
+  <!--<link href="css/custom.css" rel="stylesheet">-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<div class="container">
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading no-padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6"></div>
+            <div class="col-lg-2 text-right"><h5 class="text-right text-primary">Hello, <?=$_SESSION['username']?>!</h5></div>
+            <div class="col-lg-2 text-center"><a href="www.google.si"><h5>Edit profile</h5></a></div>
+            <div class="col-lg-2"><a class="text-left" href="logout.php"><h5>Logout</h5></a></div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+  <section class="container">
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Saved documents</h2>
+        <div class="form-group form-vertical">
+        </div>
+
+        <div style="width:10%">
+          <a href="/" class="btn btn-primary" style="margin-left:905%">Create new</a>
+        </div>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>DocumentID</th>
+              <th>DocumentName</th>
+              <th>Alias</th>
+              <th>Tags</th>
+              <th>Text</th>
+              <th>UserID</th>
+              <th>LastUpdate</th>
+              <th>IsDeleted</th>
+              <th>Povezava do dokumenta</th>
+              <th>Brisanje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $newArray = array_filter($this->DocumentList, function ($v) {
+              return (gettype($v) != 'string');
+            });
+            foreach ($newArray as $item):
+              $isItemDeleted = $item['IsDeleted'] == 1;
+              ?>
+              <tr class="tableRow">
+                <td class="document-id" data-document-id="<?= $item['DocumentID'] ?>"><?= $item['DocumentID'] ?></td>
+                <td><?= $item['DocumentName'] ?></td>
+                <td><?= $item['Alias'] ?></td>
+                <td><?= $item['Tags'] ?></td>
+                <td><?= $item['Text'] ?></td>
+                <td><?= $item['UserID'] ?></td>
+                <td><?= $item['LastUpdate'] ?></td>
+                <td><?= $item['IsDeleted'] ?></td>
+
+                <?php if ($isItemDeleted): ?>
+                  <td></td>
+                  <td></td>
+                <?php else: ?>
+                  <td><a target="_blank" href="http://md-to-html.com/?document-id=<?= $item['DocumentID'] ?>">Odpri dokument</a></td>
+
+                  <td><a class="delete"">Izbriši</a></td>
+
+                <?php endif; ?>
+
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </section>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="../../js/bootstrap.min.js"></script>
+  <script src="../../js/custom/custom.js"></script>
+  <script src="../../js/custom/input.js"></script>
+
+</body>
+</html>

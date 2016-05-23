@@ -1,0 +1,48 @@
+section {
+  &.container {
+    div {
+      &.editor-wrapper {
+        margin-top: 20px;
+        textarea {
+          min-height: 500px;
+        }
+      }
+      &.panel {
+        &.settings-panel {
+          border: none;
+          box-shadow: none;
+          /**
+          - Inputi med sabo ločeni 10px OK
+          - prvi ne sme bit odmaknjen od leve OK
+          - ni obrobe zgoraj  OK
+          - dodaj save btn   OK
+          - zmanjšaj razmik med code/preview
+          - textarea se ne sme dat povečat
+
+          */
+        }
+      }
+      div {
+        input, button {
+          &.form-control, &.btn {
+            &.small-margin-left {
+              margin-left: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+textarea {
+  resize: none;
+}
+
+* {
+  font-size: 11px;
+}

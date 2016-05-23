@@ -1,0 +1,8 @@
+(function($, undefined) {
+//code
+
+
+
+
+
+})(jQuery);
