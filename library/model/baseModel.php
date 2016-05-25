@@ -120,8 +120,10 @@ abstract class BaseModel implements BaseInterface
   public function create ()
   {
     $sql = "INSERT INTO {$this->tableName} {$this->createInsert()}";
+    
     $db = $this->getDatabase();
     $handle = $db->prepare($sql);
+
     $handle->execute();
     return $db->lastInsertId();
   }
@@ -151,6 +153,7 @@ abstract class BaseModel implements BaseInterface
   /**
    * @inheritDoc
    */
+  
   public function update ($id, $data)
   {
 
@@ -170,7 +173,10 @@ abstract class BaseModel implements BaseInterface
 
     $sql .= " WHERE {$this->primary} = :id";
 
+
     $db = $this->getDatabase();
+    //var_dump($sql);
+    //exit;
     $handler = $db->prepare($sql);
 
     $params = [];

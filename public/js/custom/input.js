@@ -9,6 +9,8 @@ $(function($, undefined) {
   var interval = 1000;
   var docID;
 
+  
+
 
   $('body')
     .on('blur', 'input', function(e) {
@@ -186,4 +188,6 @@ $(function($, undefined) {
   function getCode() {
     return $("textarea[name=textleft]").val();
   }
+  
+  
 });

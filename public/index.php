@@ -46,8 +46,10 @@ if (!$loggedIn) {
     }
     if(isset($_REQUEST['register-submit']))
     {
+       
         $controller='registration';
         $action='register_member';
+        
     }
 
 
@@ -95,7 +97,7 @@ if (!in_array($action, $actions))
 
 
 include_once("controllers/{$controller}.php");
-//var_dump($controller,$_REQUEST);
+
 $controller = new $controller($controller, $_REQUEST);
 
 
