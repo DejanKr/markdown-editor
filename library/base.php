@@ -1,7 +1,7 @@
 <?php
 
 chdir(__DIR__);
-//include "base-interface.php";
+
 /**
  * Class Base
  * @package markdown\libray

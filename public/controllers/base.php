@@ -3,51 +3,60 @@
 
 class BaseController
 {
-  /**
-   * @var array
-   */
+    /**
+     * @var array
+     */
 
-  protected $request = [];
-  protected $controller = '';
-  protected $action = '';
+    protected $request = [];
+    protected $controller = '';
+    protected $action = '';
 
-  public function __construct ($controller, $request)
-  {
-    $this->request = $request;
-    $this->controller = $controller;
+    public function __construct($controller, $request)
+    {
+        $this->request = $request;
+        $this->controller = $controller;
 
-  }
-
-  protected function getView ($data = [])
-  {
-
-    if ($data && sizeof($data) > 0 && is_array($data)) {
-      foreach ($data as $key => $value)
-        $this->$key = $value;
     }
-    unset($data);
-    return include __DIR__ . '/../views/' . $this->controller . "/" . $this->action . '.phtml';
-  }
 
+    /*
+     * Controller function to get view.
+     */
+    protected function getView($data = [])
+    {
 
-  protected function getJson ($data)
-  {
-    header('Content-Type: application/json');
-    echo json_encode($data);
-    exit;
-  }
+        if ($data && sizeof($data) > 0 && is_array($data)) {
+            foreach ($data as $key => $value)
+                $this->$key = $value;
+        }
+        unset($data);
+        return include __DIR__ . '/../views/' . $this->controller . "/" . $this->action . '.phtml';
 
-  protected function getRequestData ($key = null, $default = null)
-  {
-    $request = $this->request;
+    }
 
-    if ($key && is_array($request))
-      if (isset($request[$key]))
-        return $request[$key];
+    /*
+     * Controller function JSON encode.
+     */
+    protected function getJson($data)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+    
+    /*
+     * Controller function to get request data. 
+     */
+    protected function getRequestData($key = null, $default = null)
+    {
+        $request = $this->request;
 
-      else
-        return $default;
+        if ($key && is_array($request))
+            if (isset($request[$key]))
+                return $request[$key];
 
-    return $request;
-  }
+            else
+                return $default;
+
+        return $request;
+    }
 }

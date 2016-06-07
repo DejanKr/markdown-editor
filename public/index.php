@@ -1,36 +1,9 @@
 <?php
 
-/*
-session_start();
-
-$loggedIn = false;
-
-
-if(isset($_REQUEST['login-submit']))
-{
-  include "model/editor.php";
-  $edit=new LoginModel();
-
-
-}
-else
-{
-  $loggedIn=true;
-
-
-}
-
-
-
-
-
-var_dump($_REQUEST);
-
-*/
 
 session_start();
 
-//$_SESSION=array();
+
 $loggedIn = false;
 if (isset($_SESSION['logged'])) {
     if ($_SESSION['logged'] == 'yes') {
@@ -41,15 +14,41 @@ if (isset($_SESSION['logged'])) {
 
 if (!$loggedIn) {
     $controller = $action = 'login';
+
     if (isset($_REQUEST['login-submit'])) {
-        $action = 'check';
+
+        $action = 'checkLogin';
+
     }
-    if(isset($_REQUEST['register-submit']))
-    {
-       
-        $controller='registration';
-        $action='register_member';
-        
+    if (isset($_REQUEST['register-submit'])) {
+
+        $controller = 'registration';
+        $action = 'registerMember';
+
+    }
+    if (isset($_REQUEST['activation'])) {
+        $controller = 'registration';
+        $action = 'activation';
+    }
+    if (isset($_REQUEST['forgotpass'])) {
+        $controller = 'login';
+        $action = 'forgotpass';
+    }
+    if (isset($_REQUEST['reset'])) {
+        $controller = 'login';
+        $action = 'resetPass';
+
+
+    }
+    if (isset($_REQUEST['rp'])) {
+        $controller = 'login';
+        $action = 'newPass';
+
+    }
+    if (isset($_REQUEST['activateCode'])) {
+        $controller = 'login';
+        $action = 'setPass';
+
     }
 
 
@@ -69,19 +68,28 @@ if (!$loggedIn) {
 
 
 $controllers = [
-    'index' => [ //controllers
-        'index',//actions
-        'showList', //actions
+    
+    'index' => [ 
+        'index',
+        'showList', 
     ],
     'editor' => [
-        'index', 'save', 'test', 'generate', 'deleteDocument' //actions
+        'index', 
+        'save', 
+        'test', 
+        'generate', 
+        'deleteDocument' 
     ],
     'login' => [
         'login',
-        'check'
+        'checkLogin',
+        'resetPass',
+        'newPass',
+        'setPass'
     ],
-    'registration'=>[
-        'register_member'
+    'registration' => [
+        'registerMember',
+        'activation'
     ]
 
 ];
@@ -99,7 +107,5 @@ if (!in_array($action, $actions))
 include_once("controllers/{$controller}.php");
 
 $controller = new $controller($controller, $_REQUEST);
-
-
 $controller->$action();
-//var_dump($controller);
+

@@ -9,17 +9,32 @@ class registration extends BaseController
     {
         $this->request=$request;
     }
-    public function register_member()
+    
+    /*
+     * Controller function to register new user.
+     */
+    public function registerMember()
     {
         $member=new UserModel();
-        $je=$member->newUser($this->request);
+        $isOk=$member->newUser($this->request);
 
         $this->getJson([
-            'exist' => $je
+            'exist' => $isOk
         ]);
         
-        //if($member->existUser($this->request);
-        
+    }
+
+    /*
+     * Controller function to activate user in database.
+     */
+
+    public function activation()
+    {
+        $activate=new UserModel();
+        $activate->activateUser($this->request);
+        header("location:confirmRegistration.php");
+
+
     }
 
 

@@ -32,8 +32,9 @@ CREATE TABLE `users` (
   `IsDeleted` tinyint(1) DEFAULT '0',
   `Email` varchar(70) DEFAULT NULL,
   `IsActivated` tinyint(1) DEFAULT '0',
+  `Activation` varchar(120) DEFAULT NULL,
   PRIMARY KEY (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +43,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (46,'Dejan','$2y$10$yPiPZDGOSx5VFfRoa247IOfH2WJflzAU/96D.aiHUKFgt7jR2Kf1m','2016-05-25 08:33:00',0,'dejankrejic@gmail.com',0),(47,'Matej','$2y$10$Fm/9tJfp2v6U0zwI8gBpUOs92AsBE7CsKEiFKDhgiw0qm0XTpXHQS','2016-05-25 08:21:00',0,'matej@gmail.com',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-25 10:15:55
+-- Dump completed on 2016-06-07 13:22:51

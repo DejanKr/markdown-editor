@@ -127,19 +127,7 @@ abstract class BaseModel implements BaseInterface
     $handle->execute();
     return $db->lastInsertId();
   }
-
-  /**
-   * @inheritDoc
-   */
-
-/*
-  public function existMember($username,$password)
-  {
-    $db=$this->getDatabase();
-    $handle=$db->prepare("SELECT * FROM {$this->tableName} WHERE {$}")
-
-  }
-*/
+  
   public function find ($id)
   {
     $db = $this->getDatabase();
@@ -153,6 +141,7 @@ abstract class BaseModel implements BaseInterface
   /**
    * @inheritDoc
    */
+  
   
   public function update ($id, $data)
   {
@@ -175,8 +164,6 @@ abstract class BaseModel implements BaseInterface
 
 
     $db = $this->getDatabase();
-    //var_dump($sql);
-    //exit;
     $handler = $db->prepare($sql);
 
     $params = [];
